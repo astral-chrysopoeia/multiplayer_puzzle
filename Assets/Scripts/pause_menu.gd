@@ -19,7 +19,7 @@ func _on_resume_pressed() -> void:
 	get_tree().paused = false
 
 func _on_reset_level_pressed() -> void:
-	GameManager.to_area(GameManager.current_level)
+	#GameManager.to_area(GameManager.current_level)
 	visible = false
 	get_tree().paused = false
 

@@ -42,5 +42,6 @@ func _on_body_exited(body: Node2D) -> void:
 		label.hide()
 
 func exit_area():
-	GameManager.spawn_pos = Vector2(destinationX, destinationY)
-	GameManager.to_area(destination)
+	pass
+	#GameManager.spawn_pos = Vector2(destinationX, destinationY)
+	#GameManager.to_area(destination)

@@ -4,16 +4,28 @@ class_name PlayerController
 @export var speed = 10.0
 @export var jump_power = 10.0
 
+@onready var camera := $Camera2D
 
 var speed_multiplier = 30.0
 var jump_multiplier = -30.0
 var direction = 0
+var playerID : String
+var object = null
 
 func _ready():
-	#process_mode = Node.PROCESS_MODE_ALWAYS
-	to_spawn()
+	call_deferred("_post_ready")
+
+func _post_ready():
+	if is_multiplayer_authority():
+		camera.make_current()
+		print("Local Player")
+	else:
+		camera.queue_free()
+		print("Remote Player")
 
 func _input(event):
+	if not is_multiplayer_authority():
+		return
 	# Handle jump.
 	if event.is_action_pressed("jump") and is_on_floor():
 		velocity.y = jump_power * jump_multiplier
@@ -22,6 +34,10 @@ func _input(event):
 		set_collision_mask_value(10, false)
 	else:
 		set_collision_mask_value(10, true)
+	
+	if event.is_action_pressed("interact"):
+		if object != null and object.interactable:
+			object.interact()
 	
 
 func _physics_process(delta: float) -> void:
@@ -39,5 +55,5 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func to_spawn():
-	transform.origin = GameManager.spawn_pos
+#func to_spawn():
+	#transform.origin = GameManager.spawn_pos

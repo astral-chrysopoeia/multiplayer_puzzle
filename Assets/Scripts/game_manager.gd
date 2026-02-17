@@ -9,10 +9,8 @@ var current_level : String
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	player = get_tree().get_first_node_in_group("player")
 	area_container = get_tree().get_first_node_in_group("area_container")
-	to_area("tutorial_level")
-	current_level = "tutorial_level"
+	
 
 func to_area(destination: String):
 	var full_path = area_path + destination + ".tscn"
