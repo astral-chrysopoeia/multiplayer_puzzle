@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://do33meh304brr"]
+
+[ext_resource type="Script" uid="uid://81lqxgxnlx0y" path="res://Assets/Scripts/lever.gd" id="1_ck50n"]
+[ext_resource type="Texture2D" uid="uid://dhb0g2kalkq7x" path="res://Assets/Sprites/lever.png" id="2_8v87b"]
+[ext_resource type="FontFile" uid="uid://ds2lf2wy6wtd5" path="res://Assets/Fonts/Kenney Mini.ttf" id="3_evxop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2y5j4"]
+size = Vector2(16, 13)
+
+[sub_resource type="LabelSettings" id="LabelSettings_04kmi"]
+font = ExtResource("3_evxop")
+font_size = 8
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Lever" type="Area2D"]
+script = ExtResource("1_ck50n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_8v87b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_2y5j4")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -31.0
+offset_right = 20.0
+offset_bottom = -8.0
+text = "Flip (E)"
+label_settings = SubResource("LabelSettings_04kmi")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

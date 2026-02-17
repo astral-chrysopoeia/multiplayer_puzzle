@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmwgxd24b0w8g"]
+
+[ext_resource type="PackedScene" uid="uid://dmd4a1ys4wxe1" path="res://Assets/Scenes/player.tscn" id="1_0ti3t"]
+[ext_resource type="PackedScene" uid="uid://ddyp1fne0uwms" path="res://Assets/Scenes/pause_menu.tscn" id="1_6k5g7"]
+
+[node name="Gameplay" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_0ti3t")]
+
+[node name="Area" type="Node2D" parent="." groups=["area_container"]]
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_6k5g7")]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cki5os8l3leyu"]
+
+[ext_resource type="Script" uid="uid://57wrb8ndx6uv" path="res://Assets/Scripts/respawn_bound.gd" id="1_nusdk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xh6ha"]
+
+[node name="RespawnBound" type="Area2D"]
+script = ExtResource("1_nusdk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_xh6ha")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

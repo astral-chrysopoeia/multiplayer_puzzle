@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhhx6cwn4v701"]
+
+[ext_resource type="Script" uid="uid://ctqlwtbap6b6j" path="res://Assets/Scripts/area_exit.gd" id="1_pwf35"]
+[ext_resource type="Texture2D" uid="uid://dp3rayqal0aqg" path="res://Assets/Sprites/door_v2.png" id="2_wttv3"]
+[ext_resource type="FontFile" uid="uid://ds2lf2wy6wtd5" path="res://Assets/Fonts/Kenney Mini.ttf" id="3_wttv3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wttv3"]
+size = Vector2(16, 18)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pwf35"]
+font = ExtResource("3_wttv3")
+font_size = 8
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Door" type="Area2D" node_paths=PackedStringArray("sprite")]
+z_index = -1
+collision_layer = 65536
+script = ExtResource("1_pwf35")
+sprite = NodePath("DoorSprite")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_wttv3")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_wttv3")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -39.0
+offset_right = 20.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enter (E)"
+label_settings = SubResource("LabelSettings_pwf35")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keys" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

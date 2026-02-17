@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://bojrebi3xou4p"]
+
+[ext_resource type="Script" uid="uid://do82186squnjg" path="res://Assets/Scripts/key.gd" id="1_578ia"]
+[ext_resource type="Texture2D" uid="uid://uv4v5e88b88c" path="res://Assets/Sprites/key.png" id="2_578ia"]
+
+[sub_resource type="Animation" id="Animation_yg2bo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FloatAnimator/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(2, 5, 12, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_578ia"]
+resource_name = "float"
+length = 4.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FloatAnimator/Sprite2D:region_rect")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(2, 5, 12, 7), Rect2(2, 4, 12, 7), Rect2(2, 3, 12, 7), Rect2(2, 4, 12, 7), Rect2(2, 5, 12, 7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1coa"]
+_data = {
+&"RESET": SubResource("Animation_yg2bo"),
+&"float": SubResource("Animation_578ia")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5pc"]
+size = Vector2(14, 7)
+
+[node name="Key" type="Area2D"]
+script = ExtResource("1_578ia")
+
+[node name="FloatAnimator" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FloatAnimator"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_i1coa")
+}
+autoplay = "float"
+playback_auto_capture_ease_type = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="FloatAnimator"]
+texture = ExtResource("2_578ia")
+region_enabled = true
+region_rect = Rect2(2, 5, 12, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hr5pc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
