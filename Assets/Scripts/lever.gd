@@ -10,13 +10,11 @@ var interactable = true
 func _ready():
 	sprite_2d.flip_h = true
 
-#func _input(event: InputEvent) -> void:
-	#if not is_multiplayer_authority():
-		#return
-	#if event.is_action_pressed("interact") and interactable:
-		#interact()
-
 func interact():
+	rpc("_flip_lever")
+
+@rpc("any_peer", "call_local", "reliable")
+func _flip_lever():
 	for gate in gates:
 		gate.switch_pos()
 	sprite_2d.flip_h = !sprite_2d.flip_h

@@ -6,6 +6,11 @@ class_name Key
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is PlayerController:
-		if door:
-			door.open()
-		queue_free()
+		rpc("pickup")
+
+@rpc("any_peer", "call_local", "reliable")
+func pickup():
+	print("pickup")
+	if door:
+		door.open()
+	queue_free()

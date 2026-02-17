@@ -3,8 +3,11 @@ extends Node2D
 @export var player_controller : PlayerController
 @export var animation_player : AnimationPlayer
 @export var sprite : Sprite2D
+@export var current_animation : String
 
 func _process(_delta):
+	if not is_multiplayer_authority():
+		return
 	#flips the character sprite
 	if player_controller.direction == 1:
 		sprite.flip_h = false
