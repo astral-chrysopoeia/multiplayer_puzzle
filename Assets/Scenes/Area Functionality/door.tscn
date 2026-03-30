@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhhx6cwn4v701"]
+[gd_scene format=3 uid="uid://bhhx6cwn4v701"]
 
 [ext_resource type="Script" uid="uid://ctqlwtbap6b6j" path="res://Assets/Scripts/area_exit.gd" id="1_pwf35"]
 [ext_resource type="Texture2D" uid="uid://dp3rayqal0aqg" path="res://Assets/Sprites/door_v2.png" id="2_wttv3"]
@@ -13,23 +13,23 @@ font_size = 8
 outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Door" type="Area2D" node_paths=PackedStringArray("sprite")]
+[node name="Door" type="Area2D" unique_id=1362262224 node_paths=PackedStringArray("sprite")]
 z_index = -1
 collision_layer = 65536
 script = ExtResource("1_pwf35")
 sprite = NodePath("DoorSprite")
 
-[node name="DoorSprite" type="Sprite2D" parent="."]
+[node name="DoorSprite" type="Sprite2D" parent="." unique_id=1453319596]
 position = Vector2(0, -16)
 texture = ExtResource("2_wttv3")
 region_enabled = true
 region_rect = Rect2(16, 0, 16, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1209079795]
 position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_wttv3")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1115724886]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,7 +47,7 @@ label_settings = SubResource("LabelSettings_pwf35")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Keys" type="Node2D" parent="."]
+[node name="Keys" type="Node2D" parent="." unique_id=1358062379]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

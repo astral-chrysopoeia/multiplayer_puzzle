@@ -2,7 +2,9 @@ extends Area2D
 
 class_name Key
 
-@export var door : AreaExit
+@export var doors : Array[AreaExit]
+
+var pickedup := false
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is PlayerController:
@@ -10,7 +12,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func pickup():
-	print("pickup")
-	if door:
-		door.open()
+	pickedup = true
+	if doors:
+		for door in doors:
+			door.open()
 	queue_free()

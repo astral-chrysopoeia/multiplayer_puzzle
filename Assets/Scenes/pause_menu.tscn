@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddyp1fne0uwms"]
+[gd_scene format=3 uid="uid://ddyp1fne0uwms"]
 
 [ext_resource type="Script" uid="uid://do4haf4ad0q2j" path="res://Assets/Scripts/pause_menu.gd" id="1_6udtp"]
 [ext_resource type="FontFile" uid="uid://ds2lf2wy6wtd5" path="res://Assets/Fonts/Kenney Mini.ttf" id="2_dadan"]
 
-[node name="PauseMenu" type="CanvasLayer"]
+[node name="PauseMenu" type="CanvasLayer" unique_id=1007909427]
 script = ExtResource("1_6udtp")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1513558299]
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 0.607843)
 
-[node name="Resume" type="Button" parent="."]
+[node name="Resume" type="Button" parent="." unique_id=971866340]
 offset_left = 451.0
 offset_top = 174.0
 offset_right = 701.0
@@ -20,7 +20,7 @@ theme_override_fonts/font = ExtResource("2_dadan")
 theme_override_font_sizes/font_size = 32
 text = "Resume"
 
-[node name="Reset Level" type="Button" parent="."]
+[node name="Reset Level" type="Button" parent="." unique_id=564469231]
 offset_left = 451.0
 offset_top = 274.0
 offset_right = 701.0
@@ -29,7 +29,7 @@ theme_override_fonts/font = ExtResource("2_dadan")
 theme_override_font_sizes/font_size = 32
 text = "Reset Level"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="." unique_id=1304240501]
 offset_left = 451.0
 offset_top = 374.0
 offset_right = 701.0

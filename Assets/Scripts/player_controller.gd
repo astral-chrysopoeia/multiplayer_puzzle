@@ -12,6 +12,10 @@ var direction = 0
 var playerID : String
 var object = null
 
+var current_spawn := Vector2.ZERO
+var next_spawn := Vector2.ZERO
+var can_leave = false
+
 func _ready():
 	call_deferred("_post_ready")
 
@@ -55,5 +59,15 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-#func to_spawn():
-	#transform.origin = GameManager.spawn_pos
+func to_spawn():
+	if not is_multiplayer_authority():
+		return
+	transform.origin = current_spawn
+
+func next_level():
+	if not is_multiplayer_authority():
+		return
+	current_spawn = next_spawn
+	next_spawn = Vector2.ZERO
+	can_leave = false
+	to_spawn()

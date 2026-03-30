@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bojrebi3xou4p"]
+[gd_scene format=3 uid="uid://bojrebi3xou4p"]
 
 [ext_resource type="Script" uid="uid://do82186squnjg" path="res://Assets/Scripts/key.gd" id="1_578ia"]
 [ext_resource type="Texture2D" uid="uid://uv4v5e88b88c" path="res://Assets/Sprites/key.png" id="2_578ia"]
@@ -45,25 +45,23 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hr5pc"]
 size = Vector2(14, 7)
 
-[node name="Key" type="Area2D"]
+[node name="Key" type="Area2D" unique_id=1499721340]
 script = ExtResource("1_578ia")
 
-[node name="FloatAnimator" type="Node2D" parent="."]
+[node name="FloatAnimator" type="Node2D" parent="." unique_id=669818028]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FloatAnimator"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FloatAnimator" unique_id=751656154]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_i1coa")
-}
-autoplay = "float"
+libraries/ = SubResource("AnimationLibrary_i1coa")
+autoplay = &"float"
 playback_auto_capture_ease_type = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="FloatAnimator"]
+[node name="Sprite2D" type="Sprite2D" parent="FloatAnimator" unique_id=804197179]
 texture = ExtResource("2_578ia")
 region_enabled = true
 region_rect = Rect2(2, 5, 12, 7)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1850754735]
 shape = SubResource("RectangleShape2D_hr5pc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

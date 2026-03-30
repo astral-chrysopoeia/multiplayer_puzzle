@@ -9,16 +9,21 @@ const playerScene := preload("res://Assets/Scenes/player.tscn")
 const tutorialScene := preload("res://Assets/Scenes/Areas/tutorial_level.tscn")
 const PORT := 7000
 const MAX_CLIENTS := 3
+const area_path = "res://Assets/Scenes/Areas/"
+
+var default_spawn_pos:= Vector2.ZERO
 
 func _ready():
 	var demoScene := tutorialScene.instantiate()
 	area.add_child(demoScene)
+	demoScene.gameplay_manager = self
 	
 	if singleplayerMode:
 		print("Singleplayer Mode")
 		var player := playerScene.instantiate()
 		player.playerID = "1"
 		add_child(player)
+		NetworkManager.players.append(player)
 		return
 	
 	spawner.add_spawnable_scene(playerScene.resource_path)
@@ -36,6 +41,28 @@ func _ready():
 	else:
 		print("Starting as SERVER")
 		host_game()
+
+func try_next_level(level: String):
+	for player in NetworkManager.players:
+		if not player.can_leave:
+			return
+	rpc("to_level", level)
+
+@rpc("any_peer", "call_local", "reliable")
+func to_level(level: String):
+	var full_path = area_path + level + ".tscn"
+	var next_level = load(full_path)
+	for child in area.get_children():
+		child.queue_free()
+		await child.tree_exited
+	if !next_level:
+		return
+	var instance = next_level.instantiate()
+	area.add_child(instance)
+	instance.gameplay_manager = self
+	for player in NetworkManager.players:
+		player.next_level()
+		player.can_leave = false
 
 func host_game():
 	var peer := ENetMultiplayerPeer.new()
@@ -72,6 +99,7 @@ func _spawn_player(peer_id: int):
 	player.set_multiplayer_authority(peer_id)
 	
 	print("Spawned player node for peer: ", peer_id)
+	NetworkManager.players.append(player)
 	return player
 
 func _on_peer_connected(id: int):
