@@ -122,35 +122,29 @@ label_settings = SubResource("LabelSettings_o5wc8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Levers" type="Node2D" parent="." index="3" unique_id=1552130667]
-
-[node name="LeverA_1" parent="Levers" index="0" unique_id=702868082 node_paths=PackedStringArray("gates") instance=ExtResource("3_il51r")]
+[node name="LeverA_1" parent="Levers" parent_id_path=PackedInt32Array(1855098329) index="0" unique_id=702868082 node_paths=PackedStringArray("gates") instance=ExtResource("3_il51r")]
 position = Vector2(520, 0)
 gates = [NodePath("../../Gates/Gate1_A")]
 
-[node name="LeverB_2" parent="Levers" index="1" unique_id=214718834 node_paths=PackedStringArray("gates") instance=ExtResource("3_il51r")]
+[node name="LeverB_2" parent="Levers" parent_id_path=PackedInt32Array(1855098329) index="1" unique_id=214718834 node_paths=PackedStringArray("gates") instance=ExtResource("3_il51r")]
 position = Vector2(640, 16)
 gates = [NodePath("../../Gates/Gate2_B")]
 
-[node name="Gates" type="Node2D" parent="." index="4" unique_id=362044975]
-
-[node name="Gate1_A" parent="Gates" index="0" unique_id=465358708 instance=ExtResource("4_5kt8k")]
+[node name="Gate1_A" parent="Gates" parent_id_path=PackedInt32Array(987656443) index="0" unique_id=465358708 instance=ExtResource("4_5kt8k")]
 position = Vector2(568, 0)
 pos1 = Vector2(568, 0)
 pos2 = Vector2(584, -32)
 
-[node name="Gate2_B" parent="Gates" index="1" unique_id=1344163913 instance=ExtResource("4_5kt8k")]
+[node name="Gate2_B" parent="Gates" parent_id_path=PackedInt32Array(987656443) index="1" unique_id=1344163913 instance=ExtResource("4_5kt8k")]
 position = Vector2(600, -96)
 pos1 = Vector2(600, -96)
 pos2 = Vector2(600, -64)
 
-[node name="WinCondition" type="Node2D" parent="." index="5" unique_id=1762023408]
-
-[node name="Key" parent="WinCondition" index="0" unique_id=1407252637 node_paths=PackedStringArray("doors") instance=ExtResource("5_mo2gs")]
+[node name="Key" parent="WinCondition" parent_id_path=PackedInt32Array(1574679008) index="0" unique_id=1407252637 node_paths=PackedStringArray("doors") instance=ExtResource("5_mo2gs")]
 position = Vector2(576, -104)
 doors = [NodePath("../Door")]
 
-[node name="Door" parent="WinCondition" index="1" unique_id=875740525 node_paths=PackedStringArray("keys", "levelManager") instance=ExtResource("3_4gf6c")]
+[node name="Door" parent="WinCondition" parent_id_path=PackedInt32Array(1574679008) index="1" unique_id=875740525 node_paths=PackedStringArray("keys", "levelManager") instance=ExtResource("3_4gf6c")]
 position = Vector2(704, -96)
 destination = "level_one"
 keys = [NodePath("../Key")]

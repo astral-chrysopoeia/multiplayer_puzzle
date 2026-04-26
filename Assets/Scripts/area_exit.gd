@@ -11,7 +11,6 @@ class_name AreaExit
 @onready var label: Label = $Label
 
 var interactable = false
-var player_overlapping : PlayerController
 var players_overlapping : Array[PlayerController]
 
 func _ready():
@@ -32,7 +31,6 @@ func close():
 	locked = true
 	sprite.region_rect.position.x = 0
 	label.text = "Door Locked!"
-	
 
 func interact():
 	exit_area()

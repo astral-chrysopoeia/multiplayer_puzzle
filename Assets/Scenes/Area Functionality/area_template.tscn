@@ -478,3 +478,9 @@ tile_set = SubResource("TileSet_ql8qi")
 
 [node name="RespawnBound" parent="." unique_id=308577209 instance=ExtResource("3_2pegy")]
 position = Vector2(0, 158)
+
+[node name="Levers" type="Node2D" parent="." unique_id=1855098329]
+
+[node name="Gates" type="Node2D" parent="." unique_id=987656443]
+
+[node name="WinCondition" type="Node2D" parent="." unique_id=1574679008]

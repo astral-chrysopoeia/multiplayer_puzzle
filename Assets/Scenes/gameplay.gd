@@ -6,7 +6,7 @@ extends Node2D
 @onready var area: Node2D = $Area
 
 const playerScene := preload("res://Assets/Scenes/player.tscn")
-const tutorialScene := preload("res://Assets/Scenes/Areas/tutorial_level.tscn")
+const tutorialScene := preload("res://Assets/Scenes/Areas/multiplayer_level_1.tscn")
 const PORT := 7000
 const MAX_CLIENTS := 3
 const area_path = "res://Assets/Scenes/Areas/"

@@ -5,6 +5,7 @@ class_name PlayerController
 @export var jump_power = 10.0
 
 @onready var camera := $Camera2D
+@onready var id_label: Label = $"Camera2D/HUD/ID Label"
 
 var speed_multiplier = 30.0
 var jump_multiplier = -30.0
@@ -26,6 +27,10 @@ func _post_ready():
 	else:
 		camera.queue_free()
 		print("Remote Player")
+	updateHUD_id()
+
+func updateHUD_id():
+	id_label.text += playerID
 
 func _input(event):
 	if not is_multiplayer_authority():
@@ -42,7 +47,6 @@ func _input(event):
 	if event.is_action_pressed("interact"):
 		if object != null and object.interactable:
 			object.interact()
-	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

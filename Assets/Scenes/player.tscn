@@ -1,8 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmd4a1ys4wxe1"]
+[gd_scene format=3 uid="uid://dmd4a1ys4wxe1"]
 
 [ext_resource type="Texture2D" uid="uid://qm0giobubkki" path="res://Assets/Sprites/player.png" id="1_6cd4h"]
 [ext_resource type="Script" uid="uid://8t8ufebgin0i" path="res://Assets/Scripts/player_controller.gd" id="1_7dd06"]
 [ext_resource type="Script" uid="uid://bxjoydvrx1fm5" path="res://Assets/Scripts/player_animator.gd" id="2_38rej"]
+[ext_resource type="FontFile" uid="uid://ds2lf2wy6wtd5" path="res://Assets/Fonts/Kenney Mini.ttf" id="2_t1xgp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_23lac"]
+font = ExtResource("2_t1xgp")
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_38rej"]
 length = 0.001
@@ -110,40 +117,50 @@ properties/2/path = NodePath("PlayerAnimator/AnimationPlayer:current_animation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1304891565 groups=["player"]]
 collision_mask = 1792
 script = ExtResource("1_7dd06")
 speed = 4.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=236473656]
 z_index = 10
 offset = Vector2(0, -24)
 zoom = Vector2(5, 5)
 position_smoothing_speed = 10.0
 
-[node name="PlayerAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
+[node name="HUD" type="Node2D" parent="Camera2D" unique_id=37786338]
+
+[node name="ID Label" type="Label" parent="Camera2D/HUD" unique_id=1110106523]
+offset_left = -115.0
+offset_top = -89.0
+offset_right = -74.0
+offset_bottom = -79.0
+text = "Player ID: "
+label_settings = SubResource("LabelSettings_23lac")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerAnimator" type="Node2D" parent="." unique_id=105915611 node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
 script = ExtResource("2_38rej")
 player_controller = NodePath("..")
 animation_player = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator" unique_id=1764081696]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_t1xgp")
-}
-autoplay = "idle"
+libraries/ = SubResource("AnimationLibrary_t1xgp")
+autoplay = &"idle"
 speed_scale = 1.25
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator"]
+[node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator" unique_id=957118909]
 position = Vector2(0, -8)
 texture = ExtResource("1_6cd4h")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106389452]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_7dd06")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1452214913]
 replication_config = SubResource("SceneReplicationConfig_38rej")
