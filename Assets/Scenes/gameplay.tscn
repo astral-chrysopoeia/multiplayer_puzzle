@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmwgxd24b0w8g"]
+[gd_scene format=3 uid="uid://bmwgxd24b0w8g"]
 
 [ext_resource type="PackedScene" uid="uid://ddyp1fne0uwms" path="res://Assets/Scenes/pause_menu.tscn" id="1_6k5g7"]
-[ext_resource type="Script" uid="uid://cnvl45v68yk2n" path="res://Assets/Scenes/gameplay.gd" id="1_j02rm"]
+[ext_resource type="Script" uid="uid://cnvl45v68yk2n" path="res://Assets/Scripts/gameplay.gd" id="1_j02rm"]
 
-[node name="Gameplay" type="Node2D"]
+[node name="Gameplay" type="Node2D" unique_id=1679982788]
 script = ExtResource("1_j02rm")
 
-[node name="Area" type="Node2D" parent="." groups=["area_container"]]
+[node name="Area" type="Node2D" parent="." unique_id=1704379684 groups=["area_container"]]
 
-[node name="PauseMenu" parent="." instance=ExtResource("1_6k5g7")]
+[node name="PauseMenu" parent="." unique_id=1847327437 instance=ExtResource("1_6k5g7")]
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=365305689]
 spawn_path = NodePath("..")

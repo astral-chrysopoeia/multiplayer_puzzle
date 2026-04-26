@@ -15,13 +15,14 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Game for Class"
-run/main_scene="uid://bmwgxd24b0w8g"
+run/main_scene="uid://4km731g8e6hq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 NetworkManager="*res://Assets/Scripts/NetworkManager.gd"
+Globals="*uid://jhgxciwmhech"
 
 [input]
 

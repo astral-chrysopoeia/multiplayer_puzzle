@@ -6,7 +6,7 @@ extends Node2D
 @onready var area: Node2D = $Area
 
 const playerScene := preload("res://Assets/Scenes/player.tscn")
-const tutorialScene := preload("res://Assets/Scenes/Areas/multiplayer_level_1.tscn")
+const tutorialScene := preload("res://Assets/Scenes/Areas/tutorial_level.tscn")
 const PORT := 7000
 const MAX_CLIENTS := 3
 const area_path = "res://Assets/Scenes/Areas/"
@@ -14,6 +14,7 @@ const area_path = "res://Assets/Scenes/Areas/"
 var default_spawn_pos:= Vector2.ZERO
 
 func _ready():
+	singleplayerMode = Globals.singleplayer
 	var demoScene := tutorialScene.instantiate()
 	area.add_child(demoScene)
 	demoScene.gameplay_manager = self
@@ -34,7 +35,7 @@ func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	
-	if "--client" in OS.get_cmdline_args():
+	if "--client" in OS.get_cmdline_args() or Globals.client_type == Globals.CLIENT_TYPES.CLIENT:
 		print("Starting as CLIENT")
 		await get_tree().create_timer(0.5).timeout
 		join_game("127.0.0.1")
@@ -50,7 +51,11 @@ func try_next_level(level: String):
 
 @rpc("any_peer", "call_local", "reliable")
 func to_level(level: String):
-	var full_path = area_path + level + ".tscn"
+	var full_path : String
+	if Globals.singleplayer and level == "multiplayer_level_1":
+		full_path = area_path + "win_screen.tscn"
+	else:
+		full_path = area_path + level + ".tscn"
 	var next_level = load(full_path)
 	for child in area.get_children():
 		child.queue_free()
@@ -109,8 +114,8 @@ func _on_peer_connected(id: int):
 
 func _on_peer_disconnected(id: int):
 	print("Peer Disconnected: ", id)
-	if has_node(str(id)):
-		get_node(str(id)).queue_free()
+	if has_node("/root/Gameplay/Player2"):
+		get_node("/root/Gameplay/Player2").queue_free()
 
 #Client Event: connected to server
 func _on_connected_to_server():
